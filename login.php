@@ -1,12 +1,13 @@
 <?php
 require 'db.php';
+require 'secure_session.php';
 session_start();
 
 // Secure session initialization
 session_set_cookie_params([
     'lifetime' => 0,                // Session cookie valid until the browser is closed
     'path' => '/',                  // Cookie available within the entire domain
-    'domain' => 'yourdomain.com',   // Change to your domain
+    'domain' => 'localhost',   // Change to your domain
     'secure' => true,               // Only send over HTTPS
     'httponly' => true,             // Prevent JavaScript access
     'samesite' => 'Lax'             // Prevent CSRF attacks
@@ -67,6 +68,7 @@ if (!is_session_valid()) {
     header("Location: login.php");
     exit;
 }
+else{header("Location: Dashboard.Content.php");}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -106,14 +108,14 @@ if (!is_session_valid()) {
                                 <span class="logo-single"></span>
                             </a>
                             <h6 class="mb-4">ورود</h6>
-                            <form>
+                            <form action="" method="post">
                                 <label class="form-group has-float-label mb-4">
-                                    <input class="form-control" />
+                                    <input class="form-control" name="username" id="username" />
                                     <span>پست الکترونیک</span>
                                 </label>
 
                                 <label class="form-group has-float-label mb-4">
-                                    <input class="form-control" type="password" placeholder="" />
+                                    <input class="form-control" name="password" id="password" type="password" placeholder="" />
                                     <span>کلمه عبور</span>
                                 </label>
                                 <div class="d-flex justify-content-between align-items-center">

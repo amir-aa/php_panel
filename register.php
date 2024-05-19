@@ -1,3 +1,17 @@
+<?php
+require 'db.php';
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $username = $_POST['username'];
+    $password = password_hash($_POST['password'], PASSWORD_BCRYPT);
+    $user = $_POST['name'];
+    $stmt = $pdo->prepare('INSERT INTO users (name,username, password) VALUES (:name,:username, :password)');
+    $stmt->execute(['username' => $username, 'password' => $password,'name'=>$name]);
+
+   // echo "User registered successfully!";
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -35,17 +49,17 @@
                             </a>
                             <h6 class="mb-4">عضویت</h6>
 
-                            <form>
+                            <form method="post" action="">
                                 <label class="form-group has-float-label mb-4">
-                                    <input class="form-control" />
+                                    <input class="form-control" name="name" id="name" />
                                     <span>نام</span>
                                 </label>
                                 <label class="form-group has-float-label mb-4">
-                                    <input class="form-control" />
+                                    <input class="form-control" name="username" id="username" />
                                     <span>پست الکترونیک</span>
                                 </label>
                                 <label class="form-group has-float-label mb-4">
-                                    <input class="form-control" type="password" placeholder="" />
+                                    <input class="form-control" type="password" name="password" id="password" placeholder="" />
                                     <span>کلمه عبور</span>
                                 </label>
                                 <div class="d-flex justify-content-end align-items-center">

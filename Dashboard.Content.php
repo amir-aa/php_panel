@@ -1,4 +1,5 @@
 <?php
+require 'secure_session.php';
 session_start();
 
 function is_session_valid() {
@@ -81,15 +82,9 @@ if (!is_session_valid()) {
                 </svg>
             </a>
 
-            <div class="search" data-search-path="Pages.Search.html?q=">
-                <input placeholder="اینجا بگرد...">
-                <span class="search-icon">
-                    <i class="simple-icon-magnifier"></i>
-                </span>
-            </div>
 
             <a class="btn btn-sm btn-outline-primary ml-3 d-none d-md-inline-block"
-                href="https://www.rtl-theme.com/?p=84826">&nbsp;خرید قالب&nbsp;</a>
+                href="https://www.rtl-theme.com/?p=84826">درخواست رایگان هاست</a>
         </div>
 
         <a class="navbar-logo" href="Dashboard.Default.html">
